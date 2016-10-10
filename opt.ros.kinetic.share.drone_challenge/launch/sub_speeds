@@ -1,0 +1,2 @@
+rostopic echo -c /quadcopter/rotor_speeds
+

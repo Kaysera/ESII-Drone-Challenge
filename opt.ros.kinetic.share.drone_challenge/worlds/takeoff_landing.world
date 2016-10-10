@@ -1,0 +1,126 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <world name="default">
+      
+      
+      
+    <!-- A global light source -->
+    <scene>
+	<ambient>0.5 0.5 0.5 1.0</ambient>
+	<shadows>true</shadows>
+    </scene>
+
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- A ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+  
+    
+    <!-- Coordinates -->   
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>0</latitude_deg>
+      <longitude_deg>0</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+
+    <!-- Camera -->
+     <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>7.8971 -5.86361 6.86576 0 0.507643 2.3202</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+    
+    <!-- Drone -->
+    <include>
+      <name>abejorro</name>
+      <uri>model://drone</uri>
+      <pose>0 0 1 0 0 -1.0472</pose>
+      <plugin name="model_push" filename="/opt/ros/jade/share/drone_gazebo/plugins/build/libmodel_push.so">
+      </plugin>
+    </include>
+
+    
+    <!-- Other objects -->
+ 
+    <model name='target'>
+      <pose>6 3 0 0 0 0</pose>
+      <static>true</static>
+      <link name='link'>
+        <collision name='collision'>
+          <pose>0 0 0.001 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.50</radius>
+              <length>0.002</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='circulo_blanco'>
+          <pose>0 0 0.0005 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.50</radius>
+              <length>0.001</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='circulo_negro'>
+          <pose>0 0 0.0015 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.40</radius>
+              <length>0.001</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Black</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    
+    
+    
+    
+    
+    <!-- Own physics settings to speed up simulation --x>
+    <physics type='ode'>
+      <max_step_size>0.01</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>100</real_time_update_rate>
+      <gravity>0 0 -9.8</gravity>
+    </physics>
+
+ -->
+    
+  </world>
+</sdf>

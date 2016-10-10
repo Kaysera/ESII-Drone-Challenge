@@ -1,0 +1,1 @@
+rostopic pub -1 /quadcopter/rotor_speeds   geometry_msgs/Quaternion   1065 1065 1065 1065
