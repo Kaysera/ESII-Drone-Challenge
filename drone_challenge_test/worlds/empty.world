@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <world name="default">
+      
+      
+    <!-- A global light source -->
+    <scene>
+	<ambient>0.5 0.5 0.5 1.0</ambient>
+	<shadows>true</shadows>
+    </scene>
+
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- A ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+  
+    
+    <include>
+      <name>abejorro</name>
+      <uri>model://drone</uri>
+      <pose>0 0 2 0 0 0</pose>
+
+      <plugin name="model_push" filename="/opt/ros/jade/share/drone_gazebo/plugins/build/libmodel_push.so">
+          <rafatopic>
+              patata_topic
+          </rafatopic>
+      </plugin>
+
+    </include>
+
+    
+ 
+    
+    
+    <!-- Own physics settings to speed up simulation --x>
+    <physics type='ode'>
+      <max_step_size>0.01</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>100</real_time_update_rate>
+      <gravity>0 0 -9.8</gravity>
+    </physics>
+
+ -->
+    
+  </world>
+</sdf>
